@@ -138,26 +138,27 @@ options:
 
     <div class = "container-fluid" >
     <div class = "row">
-    <div class = " col-xs-12  col-xs-offset-3 col-sm-6  col-sm-offset-4 col-md-4 col-sm-offset-4 col-lg-4">
+    <div class = " col-xs-12  col-xs-offset-3 col-sm-6  col-md-offset-4 col-md-4 col-lg-offset-5 col-lg-2">
+
     <div class="dropdown">
-      <button class="btn btn-info btn-lg dropdown-toggle" type="button" data-toggle="dropdown">Select Product
+      <button class="btn btn-info btn-lg dropdown-toggle" type="button" data-toggle="dropdown">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Select Product &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
       <span class="caret"></span></button>
       <ul class="dropdown-menu">
-        <li><a href="#">HDE</a></li>
-        <li><a href="#">PLR</a></li>
-        <li><a href="#">PLR</a></li>
+        <li class = "text-center"><a href="#">HDE</a></li>
+        <li class = "text-center"><a href="#">PLR</a></li>
+        <li class = "text-center"><a href="#">HED</a></li>
       </ul>
     </div> 
     </div>
     </div>
     </div>
     <br> <hr>
-
+    <br><br>
 
     <div class = "container-fluid text-center" ng-controller="myCtrl">
     <form action="brython.php" method="post" enctype="multipart/form-data" class = "text-center">
 
-    <center><h4>Select xml file to upload:</h4><br><br>
+    <center><h4>Select xml file to upload:</h4><br>
     <input type="file" name="fileToUpload" id="fileToUpload"><br></center>
     <button type= "button" class= "submit btn-lg btn-info" ng-click="">UPLOAD XML</button>
 </form>
