@@ -1,0 +1,169 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+<link rel="icon" type="image/gif" href="animated_favicon1.gif">
+
+<noscript>Please enable Javascript to view this page correctly.</noscript>
+<script type="text/javascript" src="src/brython.js"></script>
+<script src="Scripts/angular.min.js"></script>     
+<script src="Scripts/Script.js"></script> 
+<link rel = "stylesheet" href = "css/bootstrap.min.css">      
+<!--link rel="shortcut icon" href="/favicon.ico"-->
+<script type="text/python3">
+import re
+
+
+def readdata(filename):
+  file = open(filename+'.xml','r')
+  content = file.read()
+  file.close()
+  #findi(content)
+  result = a.findall(content)
+  return result
+
+def readdict():
+  with open('report_plr01.txt') as f:
+    lines = f.read().splitlines()
+  f.close()
+  return lines
+    
+UNQLIST,KVP,matches= [],[],{}
+a = re.compile('<I>([^<]+v.[^<]+)</I>', re.IGNORECASE)
+b = re.compile('</XREF>([^<]+)', re.IGNORECASE)
+c = re.compile('(<XREF[^>]*>[^<]+</XREF>)', re.IGNORECASE)
+d = re.compile("(\w+)",re.IGNORECASE)
+#print(readdata(file))
+PVP = readdata('15954')
+for item in PVP:
+  data = ''.join(d.findall(item))
+  data1= data.replace('See','').replace('see','')
+  UNQLIST.append(data1)
+#print(UNQLIST)
+dictionary = readdict()
+#print(dictionary)
+for item in dictionary:
+  key = b.findall(item)
+  unqkey = key[0].replace('\t','')
+  value = c.findall(item)
+  #unqkey = ''.join(d.findall(key[0]))
+  KVP.append((unqkey,value[0]))##
+DICT = dict(KVP)
+
+for key in UNQLIST:
+  if key in DICT:
+    matches[key] = DICT[key]
+print(matches)
+
+
+
+</script>
+
+
+<title><link rel="shortcut icon"  href="images/cite.ico" /> Cite</title>
+<link rel="stylesheet" href="doc/doc_brython.css">
+</head>
+<!--  
+options:
+  debug: can equal 0,1,2.  more verbose as number increases
+  cache: 'none', 'version', 'browser'.
+         'none' - no caching allowed. a new random number is appended to end of each request
+         'version' - caching allowed for each new brython version
+         'browser' - nothing is appended to request.  A clients browser is responsible for caching actions.
+  pythonpath: a list of additional urls/paths to search for modules
+-->
+<body onload="brython({debug:1, cache:'none'})" ng-app="myApp">
+<nav class="navbar navbar-inverse navbar-fixed-top navclass" id="main-navbar" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+        <span class="sr-only"> Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div> <!-- end navbar header-->
+
+  <div class="collapse navbar-collapse" id="nav">
+  <ul class= "nav navbar-nav">
+  <li>
+  <a href ="#"><span class="glyphicon glyphicon-home" style = "font-size:4em; color: cyan;"/></span></a>
+  </li>
+  </ul>  
+  <button type="button" class="btn btn-info pull-right" data-toggle="modal" data-target="#myModal" style = "position:" >LOGIN</button>
+  </div>
+    </div> <!-- end container-->
+  </nav> <!-- End of navigation -->
+
+
+<br>
+<div class= "container-fluid">
+<div class = "jumbotron text-center">
+ <img src="images/jumbo.png" alt="CITE">
+</div>
+</div>
+<div class = "container-fluid text-center" ng-controller="myCtrl">
+<form action="brython.php" method="post" enctype="multipart/form-data" class = "text-center">
+
+    <center>
+     <div class="dropdown">
+      <button class="btn btn-info btn-lg dropdown-toggle" type="button" data-toggle="dropdown">Selct Product
+      <span class="caret"></span></button>
+      <ul class="dropdown-menu">
+      <li>HDE 01</li>
+      <li>HED 01</li>
+      <li>PLR 01</li>
+      </ul>
+    </div> <br> <hr>
+    <h4>Select xml file to upload:</h4><br><br>
+    <input type="file" name="fileToUpload" id="fileToUpload"><br></center>
+    <button type= "button" class= "submit btn-lg btn-info" ng-click="">UPLOAD XML</button>
+</form>
+</div>
+
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">LOGIN</h4>
+      </div>
+      <div class="modal-body">
+        <form role="form">
+    <div class="form-group">
+      <label for="username">USERNAME:</label>
+      <input type="text" class="form-control" id="uname" placeholder="Enter Username">
+    </div>
+    <div class="form-group">
+      <label for="pwd">PASSWORD:</label>
+      <input type="password" class="form-control" id="pwd" placeholder="Enter Password">
+    </div>
+    <div class="checkbox">
+      <label><input type="checkbox"> Remember me</label>
+    </div>
+  </form>
+      </div>
+      <div class="modal-footer text-center">
+        <button type="button" class="login btn btn-default" data-dismiss="modal">Login</button>
+      </div>
+    </div>
+<script>
+angular.module('myApp', [])
+.controller('myCtrl', ['$scope', function($scope) {
+    
+    };
+}]);
+</script>
+  </div>
+</div>
+</body>
+</html>
+
