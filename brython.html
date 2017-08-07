@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <link rel="icon" type="image/gif" href="animated_favicon1.gif">
 
@@ -12,14 +15,13 @@
 <script type="text/javascript" src="src/brython.js"></script>
 <script src="Scripts/angular.min.js"></script>     
 <script src="Scripts/Script.js"></script> 
-<link rel = "stylesheet" href = "css/bootstrap.min.css">      
 <!--link rel="shortcut icon" href="/favicon.ico"-->
 <script type="text/python3">
 import re
 
 
 def readdata(filename):
-  file = open(filename+'.xml','r')
+  file = open(filename+'.xml','r+')
   content = file.read()
   file.close()
   #findi(content)
@@ -27,39 +29,66 @@ def readdata(filename):
   return result
 
 def readdict():
-  with open('report_plr01.txt') as f:
+  with open('report_hde01.txt') as f:
     lines = f.read().splitlines()
   f.close()
   return lines
+
+def updatefile(filename,k,v):
+  with open(filename+'.xml','r+') as f:
+    content = f.read()
+    update = content.replace(k,k+' '+v)
+    f.write(update)
+    f.close()
+  
+  
+def unmatched(k):
+  with open('UNMATCHED.txt') as file:
+    file.write(k + "\n")
+  file.close()
     
-UNQLIST,KVP,matches= [],[],{}
+    
+def updatedict(k,v):
+  with open('UNMATCHED.txt') as f:
+    f.write(k)
+    
+    
+UNQLIST,KVP,matches,LIST,unmatch= [],[],{},[],{}
 a = re.compile('<I>([^<]+v.[^<]+)</I>', re.IGNORECASE)
 b = re.compile('</XREF>([^<]+)', re.IGNORECASE)
 c = re.compile('(<XREF[^>]*>[^<]+</XREF>)', re.IGNORECASE)
 d = re.compile("(\w+)",re.IGNORECASE)
 #print(readdata(file))
+
 PVP = readdata('15954')
 for item in PVP:
   data = ''.join(d.findall(item))
   data1= data.replace('See','').replace('see','')
-  UNQLIST.append(data1)
+  UNQLIST.append((item.replace('See','').replace('see',''),data1))
+  LIST.append(data1)
+
 #print(UNQLIST)
+  
 dictionary = readdict()
 #print(dictionary)
+
 for item in dictionary:
   key = b.findall(item)
   unqkey = key[0].replace('\t','')
   value = c.findall(item)
   #unqkey = ''.join(d.findall(key[0]))
   KVP.append((unqkey,value[0]))##
+  
 DICT = dict(KVP)
+#print(DICT)
 
-for key in UNQLIST:
-  if key in DICT:
+for i in UNQLIST:
+  if i[1] in DICT:
+    key = UNQLIST[0]
     matches[key] = DICT[key]
-print(matches)
-
-
+    updatefile('15954',key,matches[key])
+  else:
+    unmatched(i[0])
 
 </script>
 
@@ -91,10 +120,10 @@ options:
   <div class="collapse navbar-collapse" id="nav">
   <ul class= "nav navbar-nav">
   <li>
-  <a href ="#"><span class="glyphicon glyphicon-home" style = "font-size:4em; color: cyan;"/></span></a>
+  <a href ="#"><span class="glyphicon glyphicon-home" style = "font-size:2em; color: cyan;"/></span></a>
   </li>
   </ul>  
-  <button type="button" class="btn btn-info pull-right" data-toggle="modal" data-target="#myModal" style = "position:" >LOGIN</button>
+  <button type="button" class="btn btn-info pull-right" data-toggle="modal" data-target="#myModal" >LOGIN</button>
   </div>
     </div> <!-- end container-->
   </nav> <!-- End of navigation -->
@@ -106,20 +135,29 @@ options:
  <img src="images/jumbo.png" alt="CITE">
 </div>
 </div>
-<div class = "container-fluid text-center" ng-controller="myCtrl">
-<form action="brython.php" method="post" enctype="multipart/form-data" class = "text-center">
 
-    <center>
-     <div class="dropdown">
-      <button class="btn btn-info btn-lg dropdown-toggle" type="button" data-toggle="dropdown">Selct Product
+    <div class = "container-fluid" >
+    <div class = "row">
+    <div class = " col-xs-12  col-xs-offset-3 col-sm-6  col-sm-offset-4 col-md-4 col-sm-offset-4 col-lg-4">
+    <div class="dropdown">
+      <button class="btn btn-info btn-lg dropdown-toggle" type="button" data-toggle="dropdown">Select Product
       <span class="caret"></span></button>
       <ul class="dropdown-menu">
-      <li>HDE 01</li>
-      <li>HED 01</li>
-      <li>PLR 01</li>
+        <li><a href="#">HDE</a></li>
+        <li><a href="#">PLR</a></li>
+        <li><a href="#">PLR</a></li>
       </ul>
-    </div> <br> <hr>
-    <h4>Select xml file to upload:</h4><br><br>
+    </div> 
+    </div>
+    </div>
+    </div>
+    <br> <hr>
+
+
+    <div class = "container-fluid text-center" ng-controller="myCtrl">
+    <form action="brython.php" method="post" enctype="multipart/form-data" class = "text-center">
+
+    <center><h4>Select xml file to upload:</h4><br><br>
     <input type="file" name="fileToUpload" id="fileToUpload"><br></center>
     <button type= "button" class= "submit btn-lg btn-info" ng-click="">UPLOAD XML</button>
 </form>
@@ -155,6 +193,52 @@ options:
         <button type="button" class="login btn btn-default" data-dismiss="modal">Login</button>
       </div>
     </div>
+    <!-- modal ends here-->
+
+<!-- Modal -->
+<div id="unmatched" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">UNMATCHED RECORDS</h4>
+      </div>
+      <div class="modal-body">
+        <div class = "container-fluid">
+        <table class = "striped">
+        <th>
+        PVP
+        </th>
+        <th>
+        Citation
+        </th>
+        <tr>
+        <I>Thomas V. Winchester</I>
+        </tr>
+        <tr>
+        <input type = "textbox" id = "citedata" placeholder = "Enter Citation">
+        </tr>
+        </table>
+        </div>
+      </div>
+      <div class="modal-footer text-center">
+        <div class ="container-fluid" >
+          <h3>This is an example of pager with anchor tags</h3>
+
+          <ul class= "pager">
+            <li class="disabled"><a href="#">&laquo; Prev</a></li>
+            <li><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li class="disabled"><a href="#">Next &raquo;</a></li>
+          </ul>  
+          </div>
+          <hr>
+        <button type="button" class="submit btn btn-default" data-dismiss="modal">Submit</button>
+      </div>
+    </div>
 <script>
 angular.module('myApp', [])
 .controller('myCtrl', ['$scope', function($scope) {
@@ -166,4 +250,3 @@ angular.module('myApp', [])
 </div>
 </body>
 </html>
-
