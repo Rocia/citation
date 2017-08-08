@@ -105,7 +105,7 @@ options:
          'browser' - nothing is appended to request.  A clients browser is responsible for caching actions.
   pythonpath: a list of additional urls/paths to search for modules
 -->
-<body onload="brython({debug:1, ipy_id:['brython'], args:['arg1', 'arg2','arg3']})" ng-app="myApp">
+<body ng-app="myApp">
 <nav class="navbar navbar-inverse navbar-fixed-top navclass" id="main-navbar" role="navigation">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -237,7 +237,7 @@ options:
           </ul>  
           </div>
           <hr>
-        <button type="button" class="submit btn btn-default" data-dismiss="modal">Submit</button>
+        <button type="button" class="submit btn btn-default" data-dismiss="modal" onclick="brython({debug:1, ipy_id:['brython'], args:['fileName', 'DBfile']})">Submit</button>
       </div>
     </div>
 <script>

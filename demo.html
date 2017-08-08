@@ -5,10 +5,18 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel = "stylesheet" href = "css/bootstrap.min.css">
+<script type="text/javascript" src="src/brython.js"></script>
+
+<script type="text/python3" id="Test1">
+print('Hello, world!')
+</script>
 
 </head>
 <body>
-<div class ="container-fluid" >
+<button type = "button" onclick="brython({debug:1, ipy_id:['Test1']"> Click Me!</button>
+<!--button type = "button" onclick="brython({debug:1, ipy_id:['Test1'], args:['1','2','3']})"> Click Me!</button-->
+
+<!--div class ="container-fluid" >
 <h3>This is an example of pagination w/o anchor tags</h3>
 <ul class= "pagination">
   <li>Image</li>
@@ -51,7 +59,7 @@
   <li><a href ="bootnav.html">5</a></li>
   <li class = "disabled"><a href ="bootbadges.html">6</a></li>
 </ul>  
-</div>
-
+</div-->
+<h2>ABC</h2>
 </body>
 </html>
