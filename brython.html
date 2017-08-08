@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+<title>Citation</title>
 <link rel="icon" type="image/gif" href="animated_favicon1.gif">
 
 <noscript>Please enable Javascript to view this page correctly.</noscript>
@@ -143,7 +143,7 @@ options:
     <div class="dropdown">
       <button class="btn btn-info btn-lg dropdown-toggle" type="button" data-toggle="dropdown">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Select Product &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
       <span class="caret"></span></button>
-      <ul class="dropdown-menu">
+      <ul class="dropdown-menu" id="ddl">
         <li class = "text-center"><a href="#">HDE</a></li>
         <li class = "text-center"><a href="#">PLR</a></li>
         <li class = "text-center"><a href="#">HED</a></li>
@@ -152,14 +152,14 @@ options:
     </div>
     </div>
     </div>
-    <br> <hr>
+    <br><hr>
     <br><br>
 
     <div class = "container-fluid text-center" ng-controller="myCtrl">
     <form action="brython.php" method="post" enctype="multipart/form-data" class = "text-center">
 
     <center><h4>Select xml file to upload:</h4><br>
-    <input type="file" name="fileToUpload" id="fileToUpload"><br></center>
+    <input type="file" name="fileToUpload" id="fileSelected"><br></center>
     <button type= "button" class= "submit btn-lg btn-info" ng-click="">UPLOAD XML</button>
 </form>
 </div>
@@ -241,10 +241,33 @@ options:
       </div>
     </div>
 <script>
+
+/*var app = angular.module('fileDemo', []);
+
+app.directive('fdInput', ['$timeout', function ($timeout) {
+    return {
+        link: function (scope, element, attrs) {
+            element.on('change', function  (evt) {
+                var files = evt.target.files;
+                console.log(files[0].name);
+                console.log(files[0].size);
+            });
+        }
+    }
+}]);*/
+
 angular.module('myApp', [])
 .controller('myCtrl', ['$scope', function($scope) {
-    
-    };
+    $('#fileSelected').on('click', function (evt) {
+    var files = $(evt.currentTarget).get(0).files;
+
+    if(files.length > 0) {
+        $('#fileName').text(files[0].name);
+        $('#fileSize').text(files[0].size);
+        $('#filePath').text($('#fileSelected').val());
+        alert (fileName,fileSize,filePath);
+    }
+    });
 }]);
 </script>
   </div>
