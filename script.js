@@ -3,6 +3,14 @@
   $scope.credentials = {
     username: '',
     password: ''
+    $stateProvider.state('protected-route', {
+    url: '/protected',
+    resolve: {
+    auth: function resolveAuthentication(AuthResolver) { 
+      return AuthResolver.resolve();
+    }
+  }
+});
   };
   $scope.login = function (credentials) {
     AuthService.login(credentials).then(function (user) {
@@ -67,9 +75,7 @@
     this.userRole = null;
   };
 })
-.controller('ApplicationController', function ($scope,
-                                               USER_ROLES,
-                                               AuthService) {
+.controller('ApplicationController', function ($scope,  USER_ROLES, AuthService) {
   $scope.currentUser = null;
   $scope.userRoles = USER_ROLES;
   $scope.isAuthorized = AuthService.isAuthorized;
@@ -102,3 +108,62 @@
     }
   });
 })
+.config(function ($httpProvider) {
+  $httpProvider.interceptors.push([
+    '$injector',
+    function ($injector) {
+      return $injector.get('AuthInterceptor');
+    }
+  ]);
+})
+
+.factory('AuthInterceptor', function ($rootScope, $q,
+                                      AUTH_EVENTS) {
+  return {
+    responseError: function (response) { 
+      $rootScope.$broadcast({
+        401: AUTH_EVENTS.notAuthenticated,
+        403: AUTH_EVENTS.notAuthorized,
+        419: AUTH_EVENTS.sessionTimeout,
+        440: AUTH_EVENTS.sessionTimeout
+      }[response.status], response);
+      return $q.reject(response);
+    }
+  };
+})
+.directive('loginDialog', function (AUTH_EVENTS) {
+  return {
+    restrict: 'A',
+    template: '<div ng-if="visible" ng-include="\'login-form.html\'">',
+    link: function (scope) {
+      var showDialog = function () {
+        scope.visible = true;
+      };
+  
+      scope.visible = false;
+      scope.$on(AUTH_EVENTS.notAuthenticated, showDialog);
+      scope.$on(AUTH_EVENTS.sessionTimeout, showDialog)
+    }
+  };
+})
+.directive('formAutofillFix', function ($timeout) {
+  return function (scope, element, attrs) {
+    element.prop('method', 'post');
+    if (attrs.ngSubmit) {
+      $timeout(function () {
+        element
+          .unbind('submit')
+          .bind('submit', function (event) {
+            event.preventDefault();
+            element
+              .find('input, textarea, select')
+              .trigger('input')
+              .trigger('change')
+              .trigger('keydown');
+            scope.$apply(attrs.ngSubmit);
+          });
+      });
+    }
+  };
+});
+
