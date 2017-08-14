@@ -1,4 +1,5 @@
 <?php
+
 $allowedExts = array("xml");
 $extension = end(explode(".", $_FILES["file"]["name"]));
 if ((($_FILES["file"]["type"] == "text/xml"))
@@ -32,4 +33,9 @@ else
   {
   echo "Invalid file";
   }
+
+
+
+
+
 ?>

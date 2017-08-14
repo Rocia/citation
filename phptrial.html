@@ -12,66 +12,10 @@
 <link rel="icon" type="image/gif" href="animated_favicon1.gif">
 
 <noscript>Please enable Javascript to view this page correctly.</noscript>
-<script type="text/javascript" src="src/brython.js"></script>
+<!--script type="text/javascript" src="src/brython.js"></script-->
 <script src="Scripts/angular.min.js"></script>     
 <script src="Scripts/Script.js"></script> 
-<script>
-function checkFileExtension( parafilevalue ){
-  var file = parafilevalue.split('.');
-  var validType = false;
-
-  if( file.length < 2 ){
-   return false;
-  }
-
-  var fileext = file[1].toLowerCase();
-  if( fileext == 'xml' ) {
-   validType = true;
-  }
-  else {
-    validType = false;
-    prompt("Invalid File type!");
-  }
-return validType;
-
- } 
- function Function()
- prompt("Hi")
- </script>
 <style>
-.dropbtn {
-    background-color: #4CAF50;
-    color: white;
-    padding: 16px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-}
-
-/* The container <div> - needed to position the dropdown content */
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-/* Dropdown Content (Hidden by Default) */
-.dropdown-menu {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-}
-
-/* Links inside the dropdown */
-.dropdown-menu a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-}
-
 /* Change color of dropdown links on hover */
 .dropdown-menu a:hover {background-color: #f1f1f1}
 
@@ -79,20 +23,9 @@ return validType;
 .dropdown:hover .dropdown-menu {
     display: block;
 }
-
-/* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {
     background-color: #3e8e41;
 }
-
-.message{
-    display:none;
-    color:#000;
-    background:#f1f1f1;
-    position:absolute;
-    top:10px;
-}
-
 </style>
 <!--link rel="shortcut icon" href="/favicon.ico"-->
 <!--script type="text/python3" id = "brython">
@@ -171,6 +104,7 @@ for i in UNQLIST:
 
 </script-->
 
+
 <title><link rel="shortcut icon"  href="images/cite.ico" /> Cite</title>
 <link rel="stylesheet" href="doc/doc_brython.css">
 </head>
@@ -219,7 +153,7 @@ options:
     <div class = " col-xs-12  col-xs-offset-3 col-sm-6  col-md-offset-4 col-md-4 col-lg-offset-5 col-lg-2">
 
     <div class="dropdown">
-      <button class="btn btn-info btn-lg dropdown-toggle" type="button" data-toggle="dropdown">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Select Product &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+      <button class="dropbtn btn btn-info btn-lg dropdown-toggle" type="button" data-toggle="dropdown">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Select Product &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
       <span class="caret"></span></button>
       <ul class="dropdown-menu" id="ddl">
         <li class = "text-center"><a href="#">HDE</a></li>
@@ -238,9 +172,11 @@ options:
 
     <center><h4>Select xml file to upload:</h4><br>
     <input type="file" name="fileToUpload" id="fileSelected"><br></center>
-    <button type= "button" class= "submit btn-lg btn-info" onclick = "Function()">UPLOAD XML</button>
+    <button type= "button" class= "submit btn-lg btn-info" ng-click="" id = "uploadxml">UPLOAD XML</button>
 </form>
 </div>
+
+ 
 <!--script type="text/python3" id = "popTable">
 from browser import document
 from browser.html import TABLE, TR, TH, TD
@@ -334,7 +270,7 @@ document['uploadxml'].bind('click', insert_table)
         <button type="button" class="submit btn btn-default" data-dismiss="modal" onclick="brython({debug:1, ipy_id:['brython'], args:['fileName', 'DBfile']})">Submit</button>
       </div>
     </div>
-<script>
+<!--script>
 
 /*var app = angular.module('fileDemo', []);
 
@@ -363,7 +299,7 @@ angular.module('myApp', [])
     }
     });
 }]);
-</script>
+</script-->
 
   </div>
 </div>
