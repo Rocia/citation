@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<<<<<<< HEAD
 
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -107,6 +108,109 @@
 </style>
 
 
+=======
+
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<title>Citation</title>
+<link rel="icon" type="image/gif" href="animated_favicon1.gif">
+
+<noscript>Please enable Javascript to view this page correctly.</noscript>
+<script type="text/javascript" src="src/brython.js"></script>
+<script src="scripts/angular.min.js"></script>     
+<script src="scripts/script.js"></script> 
+<!-- Generic page styles -->
+<link rel="stylesheet" href="css/style.css">
+<!-- blueimp Gallery styles -->
+<link rel="stylesheet" href="//blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
+<!-- CSS to style the file input field as button and adjust the Bootstrap progress bars -->
+<link rel="stylesheet" href="css/jquery.fileupload.css">
+<link rel="stylesheet" href="css/jquery.fileupload-ui.css">
+<!-- CSS adjustments for browsers with JavaScript disabled -->
+<noscript><link rel="stylesheet" href="css/jquery.fileupload-noscript.css"></noscript>
+<noscript><link rel="stylesheet" href="css/jquery.fileupload-ui-noscript.css"></noscript>
+<style>
+/* Hide Angular JS elements before initializing */
+.ng-cloak {
+    display: none;
+}
+<style>
+.jumbotron {
+  background-image:url('images/image.png');
+  height:300px;
+  background-repeat: no-repeat;
+  background-size: cover; 
+  border-bottom:1px solid #ff6a00
+}
+
+.jumbotron .container {
+  position:relative;
+  top:50px;
+}
+
+.dropbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-menu a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-menu a:hover {background-color: #f1f1f1}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+}
+
+.message{
+    display:none;
+    color:#000;
+    background:#f1f1f1;
+    position:absolute;
+    top:10px;
+}
+
+.UNMATCHED .body{
+    text-align: center;
+}
+</style>
+
+
+>>>>>>> master
 <script>
  function userlogin(){
   if(navigator.appname=="Microsoft Internet Explorer"){
@@ -126,7 +230,11 @@
     }
   }
   }
+<<<<<<< HEAD
 $('.uploaded').onclick = function checkFileExtension( parafilevalue ){
+=======
+uploaded.onclick = function checkFileExtension( parafilevalue ){
+>>>>>>> master
   var file = parafilevalue.split('.');
   var validType = false;
 
@@ -147,6 +255,7 @@ return validType;
  } 
 
 
+<<<<<<< HEAD
 $('.uploaded').addEventListener("click", alert('hi')); 
  </script>
 
@@ -200,12 +309,48 @@ $('.log').click(function() { $('.register').hide();$('.log_in').show(); })
       
         
       });
+=======
+uploaded.addEventListener("click", alert('hi')); 
+ </script>
 
+<title><link rel="shortcut icon"  href="images/cite.ico" /> Cite</title>
+<!-- rel="stylesheet" href="doc/doc_brython.css"-->
+</head>
+>>>>>>> master
 
+<body ng-app="myApp">
+<nav class="navbar navbar-inverse navbar-fixed-top navclass" id="main-navbar" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+        <span class="sr-only"> Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div> <!-- end navbar header-->
+
+  <div class="collapse navbar-collapse" id="nav">
+  <ul class= "nav navbar-nav">
+  <li>
+  <a href ="#"><span class="glyphicon glyphicon-home" style = "font-size:2em; color: cyan;"/></span></a>
+  </li>
+  </ul>  
+  <button type="button" class="btn btn-info pull-right" data-toggle="modal" data-target="#UNMATCHED" >LOGIN</button>
+  </div>
+    </div> <!-- end container-->
+  </nav> <!-- End of navigation -->
 
     </script>
 
+<br>
+<div class= "container-fluid">
+<div class = "jumbotron text-center">
+ <!--img src="images/jumboimg.png"-->
+</div>
+</div>
 
+<<<<<<< HEAD
 
 <title><link rel="shortcut icon"  href="images/cite.ico" /> Cite</title>
 <!-- rel="stylesheet" href="doc/doc_brython.css"-->
@@ -242,6 +387,8 @@ $('.log').click(function() { $('.register').hide();$('.log_in').show(); })
 </div>
 </div>
 
+=======
+>>>>>>> master
     <div class = "container-fluid" >
     <div class = "row">
     <div class = " col-xs-12  col-xs-offset-3 col-sm-6  col-md-offset-5 col-md-2 col-lg-offset-5 col-lg-2">
@@ -262,7 +409,11 @@ $('.log').click(function() { $('.register').hide();$('.log_in').show(); })
     <div class = "container-fluid text-center" ng-controller="myCtrl">
     <form action="brython.php" method="post" enctype="multipart/form-data" class = "text-center">
 
+<<<<<<< HEAD
     <center><h4>Select xml file to upload:</h4><br></center>
+=======
+    <center><h4>Select xml file to upload:</h4><br>
+>>>>>>> master
     <!--input type="file" name="fileToUpload" id="fileSelected" accept="text/xml" file-model="myApp.myFile"><br></center-->    <!-- The file upload form used as target for the file upload widget -->
     <form id="fileupload" action="//jquery-file-upload.appspot.com/" method="POST" enctype="multipart/form-data" data-ng-app="demo" data-ng-controller="DemoFileUploadController" data-file-upload="options" data-ng-class="{'fileupload-processing': processing() || loadingFiles}">
         <!-- Redirect browsers with JavaScript disabled to the origin page -->
@@ -357,6 +508,7 @@ document['uploadxml'].bind('click', insert_table)
 </script-->
 
 <!-- Modal -->
+<<<<<<< HEAD
 <!--div class = "modal fade" id = "abc">
 <div class = "modal-dialogue">
 <section class = "signup">
@@ -364,6 +516,12 @@ document['uploadxml'].bind('click', insert_table)
   <div class="modal-dialog">
 
     
+=======
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+>>>>>>> master
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -379,6 +537,7 @@ document['uploadxml'].bind('click', insert_table)
       <label for="pwd">PASSWORD:</label>
       <input type="password" class="form-control" id="pwd" placeholder="Enter Password">
     </div>
+<<<<<<< HEAD
   </form>
       </div>
       <div class="modal-footer text-center">
@@ -412,10 +571,15 @@ document['uploadxml'].bind('click', insert_table)
     <div class="form-group">
       <label for="pwd">CONFIRM PASSWORD:</label>
       <input type="password" class="form-control" id="pwd" placeholder="Repeat Password">
+=======
+    <div class="checkbox">
+      <label><input type="checkbox">Remember me</label>
+>>>>>>> master
     </div>
   </form>
       </div>
       <div class="modal-footer text-center">
+<<<<<<< HEAD
       <div class="btn-group" role="group" aria-label="Basic example">
        <button type="button" id = "sign_up" class="btn btn-default">Confirm Sign Up</button>
         <button type="button" id = "login" class="btn btn-default" data-dismiss="modal" onclick="userlogin()">Login</button>
@@ -491,6 +655,11 @@ document['uploadxml'].bind('click', insert_table)
     </div>
     </section>
 
+=======
+        <button type="button" class="login btn btn-default" data-dismiss="modal" onclick="userlogin()">Login</button>
+      </div>
+    </div>
+>>>>>>> master
   </div>
 </div>
 
@@ -612,7 +781,11 @@ angular.module('myApp', [])
 </script-->
 
 
+<<<<<<< HEAD
 <!--?php
+=======
+<?php
+>>>>>>> master
 echo "My first PHP script!";
 $name=$_REQUEST['name'];
 $pass=$_REQUEST['pwd'];
@@ -634,7 +807,11 @@ else
   }
 }
 echo "<script>$('#UNMATCHED').modal('hide')</script>";
+<<<<<<< HEAD
 ?-->
+=======
+?>
+>>>>>>> master
   </div>
 </div>
 </body>
