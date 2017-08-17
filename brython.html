@@ -183,7 +183,7 @@ options:
          'browser' - nothing is appended to request.  A clients browser is responsible for caching actions.
   pythonpath: a list of additional urls/paths to search for modules
 -->
-<body ng-app="myApp">
+<body ng-controller="ApplicationController">
 <nav class="navbar navbar-inverse navbar-fixed-top navclass" id="main-navbar" role="navigation">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -260,7 +260,7 @@ document['uploadxml'].bind('click', insert_table)
 </script-->
 
 <!-- Modal -->
-<div id="myModal" class="modal fade" role="dialog">
+<div id="myModal" class="modal fade" role="dialog" >
   <div class="modal-dialog">
 
     <!-- Modal content-->
@@ -273,11 +273,11 @@ document['uploadxml'].bind('click', insert_table)
         <form role="form">
     <div class="form-group">
       <label for="username">USERNAME:</label>
-      <input type="text" class="form-control" id="uname" placeholder="Enter Username">
+      <input type="text" class="form-control" id="uname" placeholder="Enter Username" ng-model="credentials.username">
     </div>
     <div class="form-group">
       <label for="pwd">PASSWORD:</label>
-      <input type="password" class="form-control" id="pwd" placeholder="Enter Password">
+      <input type="password" class="form-control" id="pwd" placeholder="Enter Password" ng-model="credentials.password">
     </div>
     <div class="checkbox">
       <label><input type="checkbox"> Remember me</label>
