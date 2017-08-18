@@ -103,7 +103,12 @@
 .UNMATCHED .body{
     text-align: center;
 }
-.register{display:none;}
+.jumbotron {
+    margin: auto;
+    width: 50%;
+    border: 3px solid #7fddf4;
+    padding: 10px;
+}
 </style>
 
 
@@ -224,9 +229,10 @@ $('.uploaded').addEventListener("click", alert('hi'));
 <br>
 <div class= "container-fluid">
 <div class = "jumbotron text-center">
- <!--img src="images/jumboimg.png"-->
+ <img src="images/lumina.png" style="align-center">
 </div>
 </div>
+<br><br>
 
     <div class = "container-fluid" >
     <div class = "row">
@@ -248,8 +254,11 @@ $('.uploaded').addEventListener("click", alert('hi'));
     <div class = "container-fluid text-center" ng-controller="myCtrl">
     <form action="brython.php" method="post" enctype="multipart/form-data" class = "text-center">
 
-    <center><h4>Select xml file to upload:</h4><br></center>
+    <center><h4>Select xml file to upload:</h4><br>
     <!--input type="file" name="fileToUpload" id="fileSelected" accept="text/xml" file-model="myApp.myFile"><br></center-->    <!-- The file upload form used as target for the file upload widget -->
+    <div class = "row">
+    <div class="col-lg-offset-4 col-lg-7 col-md-offset-4 col-md-7">
+    <center>
     <form id="fileupload" action="//jquery-file-upload.appspot.com/" method="POST" enctype="multipart/form-data" data-ng-app="demo" data-ng-controller="DemoFileUploadController" data-file-upload="options" data-ng-class="{'fileupload-processing': processing() || loadingFiles}">
         <!-- Redirect browsers with JavaScript disabled to the origin page -->
         <noscript><input type="hidden" name="redirect" value="https://blueimp.github.io/jQuery-File-Upload/"></noscript>
@@ -257,15 +266,19 @@ $('.uploaded').addEventListener("click", alert('hi'));
         <div class="row fileupload-buttonbar">
             <div class="col-lg-7">
                 <!-- The fileinput-button span is used to style the file input field as button -->
+                &nbsp&nbsp&nbsp
                 <span class="btn btn-success fileinput-button" ng-class="{disabled: disabled}">
                     <i class="glyphicon glyphicon-plus"></i>
                     <span>Add files...</span>
                     <input type="file" name="files[]" multiple ng-disabled="disabled">
                 </span>
+                
                 <button type="button" class="btn btn-primary start" data-ng-click="submit()">
                     <i class="glyphicon glyphicon-upload"></i>
                     <span>Start upload</span>
                 </button>
+                
+
                 <button type="button" class="btn btn-warning cancel" data-ng-click="cancel()">
                     <i class="glyphicon glyphicon-ban-circle"></i>
                     <span>Cancel upload</span>
@@ -321,6 +334,10 @@ $('.uploaded').addEventListener("click", alert('hi'));
             </tr>
         </table>
 </form>
+</center>
+</div>
+</div>
     <button type= "button" id = "uploaded" class="btn btn-info">PROCESS XML</button>
 </form>
 </div>
+</center>
